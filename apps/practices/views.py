@@ -36,3 +36,28 @@ def user_articles(request, username):
 def search(request):
     keyword = request.GET.get("q", "")
     return render(request, "practices/search.html", {"keyword": keyword})
+
+def color_filter(request):
+    colors = request.GET.getlist("color")
+    return render(
+        request,
+        "practices/color_filter.html",
+        {"colors": colors},
+    )
+    
+def contact(request):
+    context = {}
+
+    if request.method == "POST":
+        name = request.POST.get("name", "")
+        email = request.POST.get("email", "")
+        message = request.POST.get("message", "")
+
+        context = {
+            "success": True,
+            "name": name,
+            "email": email,
+            "message": message,
+        }
+
+    return render(request, "practices/contact.html", context)

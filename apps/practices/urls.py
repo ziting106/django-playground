@@ -19,4 +19,6 @@ urlpatterns = [
 		views.user_articles,
 		name="user_articles",
 	),
+    path("color-filter/", views.color_filter, name="color_filter"),
+    path("contact/", views.contact, name="contact"),
 ]
