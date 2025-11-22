@@ -12,6 +12,9 @@ dependencies = [
 check = [
     "djlint>=1.36.4",
 ]
+[tool.uv]
+default-groups = ["check"]
+
 
 [tool.djlint]
 profile = "django"
