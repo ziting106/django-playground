@@ -32,3 +32,7 @@ def user_articles(request, username):
     sort = request.GET.get("sort", "newest")
     page = request.GET.get("page", "1")
     return HttpResponse(f"{username} 的文章, 排序: {sort}, 頁數: {page}")
+
+def search(request):
+    keyword = request.GET.get("q", "")
+    return render(request, "practices/search.html", {"keyword": keyword})
