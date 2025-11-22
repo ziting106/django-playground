@@ -14,5 +14,17 @@
     <p>
       歡迎來到 Django 的世界
     </p>
+    {% if name == "Jenny" %}
+    <p>You are Jenny</p>
+    <button onclick="papayaWham()">Click me</button>
+    {% else %}
+    <p>You are not Jenny</p>
+    <button disabled>don't click me</button>
+    {% endif %}
+    <script>
+      function papayaWham() {
+        alert("Papaya Wham!");
+      }
+    </script>
   </body>
 </html>
