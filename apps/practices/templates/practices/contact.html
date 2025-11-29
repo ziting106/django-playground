@@ -13,6 +13,7 @@
     </h1>
 
     <form method="post" action="">
+      <!-- 瀏覽器會記錄登入資訊，此 token 避免被別人利用 -->
       {% csrf_token %}
       <div>
         <label for="name">
