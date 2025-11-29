@@ -27,6 +27,9 @@ class Article(models.Model):
 
     author = models.ForeignKey(
         Author,
+        # If an author is deleted, set the author field to null
+        # CASCADE = 作者被刪掉文章也刪掉
+        # PROTECT = 作者如果還有文章就不讓刪
         on_delete=models.CASCADE,
         related_name="articles",
         null=True,
