@@ -89,8 +89,6 @@ dependencies = [
 [package.dev-dependencies]
 check = [
     { name = "djlint" },
-]
-dev = [
     { name = "ipython" },
 ]
 
@@ -98,8 +96,10 @@ dev = [
 requires-dist = [{ name = "django", specifier = ">=5.2.8" }]
 
 [package.metadata.requires-dev]
-check = [{ name = "djlint", specifier = ">=1.36.4" }]
-dev = [{ name = "ipython", specifier = ">=9.7.0" }]
+check = [
+    { name = "djlint", specifier = ">=1.36.4" },
+    { name = "ipython", specifier = ">=9.7.0" },
+]
 
 [[package]]
 name = "djlint"
