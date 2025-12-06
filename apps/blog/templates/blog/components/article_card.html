@@ -1,0 +1,17 @@
+<div class="article-card">
+  <h3>
+    {{ article.title }}
+  </h3>
+  <p>
+    {{ article.author.name }} | {{ article.created_at }}
+  </p>
+  <p>
+    {{ article.content|truncatewords:30 }}
+  </p>
+  {% comment %} 
+  不需要硬編碼網址，避免修改 URL 時要到處更新
+  自動處理參數，例如 {% url 'article_detail' article.id %} 會生成 /blog/articles/1/
+  如果 URL pattern 改變，只要 name 不變，所有使用 {% url %} 的地方都會自動更新 
+  {% endcomment %}
+  <a href="{% url 'article_detail' article.id %}">閱讀更多</a>
+</div>
