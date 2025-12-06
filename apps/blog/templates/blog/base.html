@@ -1,21 +1,27 @@
 {% extends "base.html" %}
 
 {% block content %}
-  <div class="blog-container">
-    <aside class="sidebar">
-      <h3>
-        文章管理
-      </h3>
-      <ul>
-        <li>
-          <a href="{% url 'article_list' %}">文章列表</a>
-        </li>
-      </ul>
+<div class="container-fluid py-5">
+  <div class="row">
+    <!-- Sidebar -->
+    <aside class="col-lg-3 mb-4">
+      <div class="card shadow-sm">
+        <div class="card-body">
+          <h5 class="card-title fw-bold mb-3">📚 文章管理</h5>
+          <nav class="nav flex-column">
+            <a href="{% url 'article_list' %}" class="nav-link ps-0 text-primary">
+              <i class="bi bi-list-ul"></i> 文章列表
+            </a>
+          </nav>
+        </div>
+      </div>
     </aside>
 
-    <div class="main-content">
+    <!-- Main Content -->
+    <div class="col-lg-9">
       {% block blog_content %}
       {% endblock blog_content %}
     </div>
   </div>
+</div>
 {% endblock content %}
