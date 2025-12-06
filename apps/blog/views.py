@@ -1,7 +1,7 @@
 from django.shortcuts import render
 
 # Create your views here.
-from apps.blog.models import Article
+from apps.blog.models import Article, Author, Tag
 
 
 def article_list(request):
@@ -12,3 +12,13 @@ def article_list(request):
 def article_detail(request, id):
     article = Article.objects.get(id=id)
     return render(request, "blog/article_detail.html", {"article": article})
+
+
+def tag_list(request):
+    tags = Tag.objects.all()
+    return render(request, "blog/tag_list.html", {"tags": tags})
+
+
+def author_list(request):
+    authors = Author.objects.all()
+    return render(request, "blog/author_list.html", {"authors": authors})
