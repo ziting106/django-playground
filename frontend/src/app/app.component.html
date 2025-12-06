@@ -1,0 +1,12 @@
+<div class="container">
+  <header>
+    <h1>Django Playground - Angular Frontend</h1>
+    <nav>
+      <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">首頁</a>
+      <a routerLink="/articles" routerLinkActive="active">文章列表</a>
+    </nav>
+  </header>
+  <main>
+    <router-outlet></router-outlet>
+  </main>
+</div>
