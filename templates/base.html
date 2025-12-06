@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Django Playground" />
+    <meta name="keywords" content="Django, Playground" />
+    <!-- 可替換title -->
+    <title>
+      {% block title %}
+        Django 大冒險
+      {% endblock title %}
+    </title>
+    <!-- 可替換head -->
+    {% block extra_head %}
+    {% endblock extra_head %}
+  </head>
+  <body>
+    <header>
+      <nav>
+        <h1>
+          Django 大冒險
+        </h1>
+      </nav>
+    </header>
+    <!-- 可替換main -->
+    <main>
+      {% block content %}
+      {% endblock content %}
+    </main>
+    <!-- 可替換footer -->
+    <footer>
+      <p>
+        Django Playground
+      </p>
+    </footer>
+    <!-- 可替換scripts -->
+    {% block extra_scripts %}
+    {% endblock extra_scripts %}
+  </body>
+</html>
