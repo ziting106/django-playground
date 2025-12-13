@@ -130,3 +130,11 @@ STATIC_URL = "static/"
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+# Django Extention : 移除 SQL 查詢的長度限制
+# SHELL_PLUS_PRINT_SQL_TRUNCATE：控制 shell_plus --print-sql 的輸出長度
+# RUNSERVER_PLUS_PRINT_SQL_TRUNCATE：控制 runserver_plus --print-sql 的輸出長度
+# 設定為 None 表示不截斷，完整顯示所有 SQL
+SHELL_PLUS_PRINT_SQL_TRUNCATE = None
+
+RUNSERVER_PLUS_PRINT_SQL_TRUNCATE = None

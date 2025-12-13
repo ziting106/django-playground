@@ -11,13 +11,13 @@
               📚 文章管理
             </h5>
             <nav class="nav flex-column">
-              <a href="{% url 'article_list' %}" class="nav-link ps-0 text-primary">
+              <a href="{% url 'blog:article_list' %}" class="nav-link ps-0 text-primary">
                 <i class="bi bi-list-ul"></i> 文章列表
               </a>
-              <a href="{% url 'tag_list' %}" class="nav-link ps-0 text-danger">
+              <a href="{% url 'blog:tag_list' %}" class="nav-link ps-0 text-danger">
                 <i class="bi bi-tags"></i> 標籤列表
               </a>
-              <a href="{% url 'author_list' %}" class="nav-link ps-0 text-success">
+              <a href="{% url 'blog:author_list' %}" class="nav-link ps-0 text-success">
                 <i class="bi bi-person-circle"></i> 作者列表
               </a>
             </nav>
