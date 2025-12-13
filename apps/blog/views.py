@@ -5,7 +5,7 @@ from apps.blog.models import Article, Author, Tag
 
 
 def article_list(request):
-    articles = Article.objects.all()
+    articles = Article.objects.select_related("author").prefetch_related("tags").all()
     return render(request, "blog/article_list.html", {"articles": articles})
 
 
