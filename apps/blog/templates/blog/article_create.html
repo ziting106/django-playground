@@ -12,12 +12,9 @@
       <h2 class="card-title mb-4">
         建立文章
       </h2>
-
       <form method="post">
         {% csrf_token %}
-
         {% bootstrap_form form %}
-
         <div class="d-flex gap-2 mt-3">
           {% bootstrap_button button_type="submit" content="建立文章" %}
           {% bootstrap_button button_type="reset" content="清除內容" button_class="btn-info" %}
