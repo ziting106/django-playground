@@ -1,5 +1,5 @@
-# from django.shortcuts import render
-from django.shortcuts import get_object_or_404, render
+from django.shortcuts import get_object_or_404, redirect, render
+from apps.blog.forms import ArticleForm
 # Create your views here.
 from apps.blog.models import Article, Author, Tag
 
@@ -22,3 +22,12 @@ def tag_list(request):
 def author_list(request):
     authors = Author.objects.all()
     return render(request, "blog/author_list.html", {"authors": authors})
+
+    
+def article_create(request):
+    form = ArticleForm(request.POST or None)
+    if form.is_valid():
+        article = form.save()
+        return redirect("blog:article_detail", id=article.id)
+
+    return render(request, "blog/article_create.html", {"form": form})
