@@ -3,7 +3,6 @@
 {% block title %}
   文章列表 - Django 大冒險
 {% endblock title %}
-
 {% block blog_content %}
   <div class="mb-4">
     <h2 class="fw-bold mb-2">
@@ -14,6 +13,20 @@
       發現最新的文章和故事
     </p>
   </div>
+  <form method="get" class="row g-3 mb-2">
+    <div class="col-md-10">
+      <input type="text"
+             name="search"
+             class="form-control"
+             placeholder="搜尋標題..."
+             value="{{ search }}">
+    </div>
+    <div class="col-md-2">
+      <button type="submit" class="btn btn-primary w-100">
+        搜尋
+      </button>
+    </div>
+  </form>
 
   <div class="row g-4">
     {% for article in articles %}

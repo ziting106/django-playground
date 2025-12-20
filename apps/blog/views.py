@@ -6,10 +6,30 @@ from apps.blog.forms import ArticleForm
 # Create your views here.
 from apps.blog.models import Article, Author, Tag
 
-
 def article_list(request):
-    articles = Article.objects.select_related("author").prefetch_related("tags").all()
-    return render(request, "blog/article_list.html", {"articles": articles})
+    # 從 GET 參數取得篩選條件
+    search = request.GET.get("search", "")  
+    author_id = request.GET.get("author", "")  
+
+    # 建立基本 QuerySet
+    articles = Article.objects.select_related("author").prefetch_related("tags")
+
+    # 根據搜尋關鍵字篩選標題
+    if search:
+        articles = articles.filter(title__icontains=search)  
+
+    # 根據作者篩選
+    if author_id:
+        articles = articles.filter(author_id=author_id)  
+
+    return render(
+        request, "blog/article_list.html", {"articles": articles, "search": search}
+    )
+
+# 沒有查詢功能
+# def article_list(request):
+#     articles = Article.objects.select_related("author").prefetch_related("tags").all()
+#     return render(request, "blog/article_list.html", {"articles": articles})
 
 
 def article_detail(request, id):
