@@ -1,3 +1,5 @@
+{% load django_bootstrap5 %}
+
 <!DOCTYPE html>
 <html lang="zh-Hant">
   <head>
@@ -26,7 +28,8 @@
     <header>
       <nav class="navbar navbar-dark bg-dark shadow-sm">
         <div class="container-fluid">
-          <a class="navbar-brand fw-bold fs-4" href="{% url 'blog:article_list' %}">
+          <a class="navbar-brand fw-bold fs-4"
+             href="{% url 'blog:article_list' %}">
             🚀 Django 大冒險
           </a>
         </div>
@@ -35,6 +38,7 @@
     <!-- 可替換main -->
     <main class="flex-grow-1 py-5">
       <div class="container">
+        {% bootstrap_messages %}
         {% block content %}
           <div class="alert alert-info text-center">
             <p class="mb-0">

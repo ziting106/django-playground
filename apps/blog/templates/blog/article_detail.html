@@ -62,6 +62,11 @@
             <span class="d-none d-sm-inline">編輯</span>
           </a>
         </div>
+        <a href="{% url 'blog:article_delete' id=article.id %}"
+           class="btn btn-outline-danger btn-sm">
+          <i class="bi bi-trash"></i>
+          <span class="d-none d-sm-inline">刪除</span>
+        </a>
         <small class="text-muted d-none d-md-inline">
           最後更新：{{ article.updated_at|date:"Y-m-d" }}
         </small>

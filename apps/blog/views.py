@@ -1,3 +1,4 @@
+from django.contrib import messages
 from django.shortcuts import get_object_or_404, redirect, render
 
 from apps.blog.forms import ArticleForm
@@ -31,6 +32,7 @@ def article_create(request):
     form = ArticleForm(request.POST or None)
     if form.is_valid():
         article = form.save()
+        messages.success(request, f"文章「{article.title}」已成功建立。")
         return redirect("blog:article_detail", id=article.id)
 
     return render(request, "blog/article_create.html", {"form": form})
@@ -42,6 +44,26 @@ def article_edit(request, id):
     form = ArticleForm(request.POST or None, instance=article)
     if form.is_valid():
         article = form.save()
+        messages.success(request, f"文章「{article.title}」已成功更新。")
         return redirect("blog:article_detail", id=article.id)
 
     return render(request, "blog/article_edit.html", {"form": form, "article": article})
+
+
+# 危險刪除示範Delete
+# def article_delete(request, id):
+#     article = get_object_or_404(Article, id=id)
+#     article.delete()
+#     return redirect("blog:article_list")
+
+
+# 安全刪除示範Delete
+def article_delete(request, id):
+    article = get_object_or_404(Article, id=id)
+
+    if request.method == "POST":
+        article.delete()
+        messages.success(request, f"文章「{article.title}」已成功刪除。")
+        return redirect("blog:article_list")
+
+    return render(request, "blog/article_delete.html", {"article": article})

@@ -12,7 +12,9 @@
       <h2 class="card-title mb-4">
         建立文章
       </h2>
-      <form method="post">
+      {% url 'blog:article_list' as cancel_url %}
+      {% include "blog/components/article_form.html" with submit_text="建立文章" show_reset=True %}
+      {% comment %} <form method="post">
         {% csrf_token %}
         {% bootstrap_form form %}
         <div class="d-flex gap-2 mt-3">
@@ -22,7 +24,7 @@
           {% url 'blog:article_list' as cancel_url %}  
           {% bootstrap_button button_type="link" href=cancel_url content="取消" button_class="btn-secondary" %}
         </div>
-      </form>
+      </form> {% endcomment %}
     </div>
   </div>
 {% endblock blog_content %}
