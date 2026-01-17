@@ -1,13 +1,18 @@
 meta {
   name: Create Article
   type: http
-  seq: 2
+  seq: 1
 }
 
 post {
   url: {{baseUrl}}/api-drf/blog/articles
   body: json
   auth: none
+}
+
+headers {
+  Content-Type: application/json
+  Accept: application/json
 }
 
 body:json {
@@ -17,9 +22,3 @@ body:json {
     "author": 1
   }
 }
-
-headers {
-  Content-Type: application/json
-  Accept: application/json
-}
-
