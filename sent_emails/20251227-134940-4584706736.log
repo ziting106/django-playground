@@ -1,0 +1,13 @@
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?b?5ZyoIDEyNy4wLjAuMTo4MDAwIOmAsuihjOWvhueivOmHjee9rg==?=
+From: webmaster@localhost
+To: test@example.com
+Date: Sat, 27 Dec 2025 05:49:40 -0000
+Message-ID: 
+ <176681458009.21671.11396202091653771737@1.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.ip6.arpa>
+
+Someone asked for password reset for email test@example.com. Follow the link below:
+http://127.0.0.1:8000/auth/password-reset/NA/d1h2es-fa86203f8db63ed46aa3ef1dd0e952d9/
+-------------------------------------------------------------------------------

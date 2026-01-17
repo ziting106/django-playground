@@ -1,30 +1,40 @@
 from django.contrib import messages
 from django.shortcuts import get_object_or_404, redirect, render
-
+from apps.blog.filters import ArticleFilter
 from apps.blog.forms import ArticleForm
-
+from django.contrib.auth.decorators import permission_required
 # Create your views here.
 from apps.blog.models import Article, Author, Tag
 
+
 def article_list(request):
-    # 從 GET 參數取得篩選條件
-    search = request.GET.get("search", "")  
-    author_id = request.GET.get("author", "")  
-
-    # 建立基本 QuerySet
-    articles = Article.objects.select_related("author").prefetch_related("tags")
-
-    # 根據搜尋關鍵字篩選標題
-    if search:
-        articles = articles.filter(title__icontains=search)  
-
-    # 根據作者篩選
-    if author_id:
-        articles = articles.filter(author_id=author_id)  
-
-    return render(
-        request, "blog/article_list.html", {"articles": articles, "search": search}
+    filter_ = ArticleFilter(
+        request.GET or None,
+        queryset=Article.objects.select_related("author").prefetch_related("tags"),
     )
+    return render(request, "blog/article_list.html", {"filter": filter_})
+
+
+# 手寫查詢
+# def article_list(request):
+#     # 從 GET 參數取得篩選條件
+#     search = request.GET.get("search", "")
+#     author_id = request.GET.get("author", "")
+
+#     # 建立基本 QuerySet
+#     articles = Article.objects.select_related("author").prefetch_related("tags")
+
+#     # 根據搜尋關鍵字篩選標題
+#     if search:
+#         articles = articles.filter(title__icontains=search)
+
+#     # 根據作者篩選
+#     if author_id:
+#         articles = articles.filter(author_id=author_id)
+
+#     return render(
+#         request, "blog/article_list.html", {"articles": articles, "search": search}
+#     )
 
 # 沒有查詢功能
 # def article_list(request):
@@ -48,6 +58,7 @@ def author_list(request):
 
 
 # Create Article
+@permission_required("blog.add_article", raise_exception=True) 
 def article_create(request):
     form = ArticleForm(request.POST or None)
     if form.is_valid():
@@ -59,6 +70,7 @@ def article_create(request):
 
 
 # Edit Article
+@permission_required("blog.change_article", raise_exception=True) 
 def article_edit(request, id):
     article = get_object_or_404(Article, id=id)
     form = ArticleForm(request.POST or None, instance=article)
@@ -78,6 +90,7 @@ def article_edit(request, id):
 
 
 # 安全刪除示範Delete
+@permission_required("blog.delete_article", raise_exception=True) 
 def article_delete(request, id):
     article = get_object_or_404(Article, id=id)
 

@@ -1,0 +1,30 @@
+meta {
+  name: Logout
+  type: http
+  seq: 2
+}
+
+post {
+  url: {{baseUrl}}/auth/logout/
+  body: form-urlencoded
+  auth: none
+}
+
+body:form-urlencoded {
+  csrfmiddlewaretoken: 
+}
+
+headers {
+  Content-Type: application/x-www-form-urlencoded
+  Accept: text/html
+  Cookie: sessionid=your_session_id_here
+}
+
+docs {
+  # 使用者登出
+  
+  注意：
+  1. 需要先登入取得 session cookie
+  2. 需要 CSRF token
+}
+

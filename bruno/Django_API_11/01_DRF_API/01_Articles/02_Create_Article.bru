@@ -1,0 +1,25 @@
+meta {
+  name: Create Article
+  type: http
+  seq: 2
+}
+
+post {
+  url: {{baseUrl}}/api-drf/blog/articles
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "title": "新文章標題",
+    "content": "文章內容",
+    "author": 1
+  }
+}
+
+headers {
+  Content-Type: application/json
+  Accept: application/json
+}
+

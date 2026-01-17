@@ -1,0 +1,31 @@
+meta {
+  name: Get Articles List
+  type: http
+  seq: 3
+}
+
+get {
+  url: {{baseUrl}}/blog/articles/
+  body: none
+  auth: none
+}
+
+params:query {
+  search: 
+  author: 
+  tag: 
+}
+
+headers {
+  Accept: text/html
+}
+
+docs {
+  # 取得文章列表
+  
+  可選查詢參數：
+  - search: 搜尋關鍵字
+  - author: 作者 ID
+  - tag: 標籤 ID
+}
+

@@ -1,0 +1,19 @@
+meta {
+  name: Get Articles
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{baseUrl}}/api-drf/blog/articles
+  body: none
+  auth: none
+}
+
+params:query {
+}
+
+headers {
+  Accept: application/json
+}
+

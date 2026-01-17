@@ -1,13 +1,92 @@
 from django.conf import settings
 from django.contrib import admin
-from django.urls import include, path
+from django.contrib.auth import views as auth_views
+from django.urls import include, path, reverse_lazy
+from drf_spectacular.views import (
+    SpectacularAPIView,
+    SpectacularRedocView,
+    SpectacularSwaggerView,
+)
+from core import views
+auth_urlpatterns = [  
+    path(
+        "login/",  
+        auth_views.LoginView.as_view(template_name="registration/login.html"),  
+        name="login",
+    ),
+    path(
+        "logout/",  
+        auth_views.LogoutView.as_view(),
+        name="logout",
+    ),
+    path("register/", views.register, name="register"),
+        path(
+        "password-change/",  
+        auth_views.PasswordChangeView.as_view(
+            template_name="registration/password_change.html",
+            success_url=reverse_lazy("auth:password_change_done"),
+        ),
+        name="password_change",
+    ),
+    path(
+        "password-change/done/",  
+        auth_views.PasswordChangeDoneView.as_view(
+            template_name="registration/password_change_done.html"
+        ),
+        name="password_change_done",
+    ),
+    # 重設密碼
+        path(
+        "password-reset/",  
+        auth_views.PasswordResetView.as_view(
+            template_name="registration/password_reset.html",
+            success_url=reverse_lazy("auth:password_reset_done"),
+        ),
+        name="password_reset",
+    ),
+    path(
+        "password-reset/done/",  
+        auth_views.PasswordResetDoneView.as_view(
+            template_name="registration/password_reset_done.html"
+        ),
+        name="password_reset_done",
+    ),
+    path(
+        "password-reset/<uidb64>/<token>/",  
+        auth_views.PasswordResetConfirmView.as_view(
+            template_name="registration/password_reset_confirm.html",
+            success_url=reverse_lazy("auth:password_reset_complete"),
+        ),
+        name="password_reset_confirm",
+    ),
+    path(
+        "password-reset/complete/",  
+        auth_views.PasswordResetCompleteView.as_view(
+            template_name="registration/password_reset_complete.html"
+        ),
+        name="password_reset_complete",
+    ),
+]
 
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("practices/", include("apps.practices.urls")),
     path("blog/", include("apps.blog.urls")),
+    path("auth/", include((auth_urlpatterns, "auth"))), 
+    path("api-drf/blog/", include("apps.blog.drf_urls")),
+    # Swagger/OpenAPI 文檔
+    path("api/schema/", SpectacularAPIView.as_view(), name="schema"),
+    path(
+        "api/docs/",
+        SpectacularSwaggerView.as_view(url_name="schema"),
+        name="swagger-ui",
+    ),
+    path(
+        "api/redoc/",
+        SpectacularRedocView.as_view(url_name="schema"),
+        name="redoc",
+    ),
 ]
-
 
 if settings.DEBUG:
     from debug_toolbar.toolbar import debug_toolbar_urls

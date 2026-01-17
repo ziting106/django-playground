@@ -1,0 +1,25 @@
+meta {
+  name: Get Article Detail
+  type: http
+  seq: 3
+}
+
+get {
+  url: {{baseUrl}}/api-drf/blog/articles/1
+  body: none
+  auth: none
+}
+
+params:query {
+}
+
+headers {
+  Accept: application/json
+}
+
+docs {
+  # 取得文章詳情
+  
+  將 URL 中的 `1` 替換為實際的文章 ID
+}
+

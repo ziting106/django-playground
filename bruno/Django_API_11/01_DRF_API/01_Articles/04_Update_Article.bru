@@ -1,0 +1,30 @@
+meta {
+  name: Update Article
+  type: http
+  seq: 4
+}
+
+put {
+  url: {{baseUrl}}/api-drf/blog/articles/1
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "title": "更新後的標題",
+    "content": "更新後的內容"
+  }
+}
+
+headers {
+  Content-Type: application/json
+  Accept: application/json
+}
+
+docs {
+  # 更新文章
+  
+  將 URL 中的 `1` 替換為實際的文章 ID
+}
+

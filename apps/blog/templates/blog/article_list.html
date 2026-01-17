@@ -1,5 +1,5 @@
 {% extends "blog/base.html" %}
-
+{% load django_bootstrap5 %}
 {% block title %}
   文章列表 - Django 大冒險
 {% endblock title %}
@@ -13,35 +13,29 @@
       發現最新的文章和故事
     </p>
   </div>
-  <form method="get" class="row g-3 mb-2">
-    <div class="col-md-10">
-      <input type="text"
-             name="search"
-             class="form-control"
-             placeholder="搜尋標題..."
-             value="{{ search }}">
-    </div>
-    <div class="col-md-2">
-      <button type="submit" class="btn btn-primary w-100">
-        搜尋
-      </button>
-    </div>
-  </form>
+  <div class="card mb-4">
+    <div class="card-body">
+      <h5 class="card-title">
+        篩選條件
+      </h5>
+      <form method="get">
+        {% bootstrap_form filter.form %}
 
-  <div class="row g-4">
-    {% for article in articles %}
-      <div class="col-md-6">
-        {% include "blog/components/article_card.html" %}
-      </div>
+        <div class="d-flex gap-2">
+          {% bootstrap_button button_type="submit" content="搜尋" %}
+          <a href="{% url 'blog:article_list' %}" class="btn btn-secondary">清除</a>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div class="row">
+    {% for article in filter.qs %}
+      {% include "blog/components/article_card.html" %}
     {% empty %}
       <div class="col-12">
-        <div class="alert alert-info text-center" role="alert">
-          <h5 class="alert-heading">
-            沒有文章
-          </h5>
-          <p class="mb-0">
-            目前還沒有發布任何文章。敬請期待！
-          </p>
+        <div class="alert alert-info">
+          沒有符合條件的文章
         </div>
       </div>
     {% endfor %}

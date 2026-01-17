@@ -1,6 +1,7 @@
 from django.urls import path
 
 from apps.practices import views
+
 app_name = "practices"
 
 urlpatterns = [
@@ -14,12 +15,13 @@ urlpatterns = [
         "articles/<int:year>/<int:month>/<slug:slug>/",
         views.article_detail,
         name="article_detail",
-	),
+    ),
     path(
-		"users/<str:username>/articles/",
-		views.user_articles,
-		name="user_articles",
-	),
+        "users/<str:username>/articles/",
+        views.user_articles,
+        name="user_articles",
+    ),
     path("color-filter/", views.color_filter, name="color_filter"),
     path("contact/", views.contact, name="contact"),
+    path("cart/", views.shopping_cart, name="shopping_cart"),
 ]

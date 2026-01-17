@@ -41,14 +41,17 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     # 第三方 apps
+    "rest_framework",
+    "drf_spectacular",
     "django_bootstrap5",
     "django_extensions",
+    "django_filters",
     # 本地 apps
     "apps.practices",
     "apps.blog",
 ]
 
-if DEBUG: 
+if DEBUG:
     INSTALLED_APPS += ["debug_toolbar"]
 
 MIDDLEWARE = [
@@ -61,7 +64,7 @@ MIDDLEWARE = [
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
 
-if DEBUG: 
+if DEBUG:
     MIDDLEWARE += ["debug_toolbar.middleware.DebugToolbarMiddleware"]
 
 ROOT_URLCONF = "core.urls"
@@ -147,3 +150,27 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 SHELL_PLUS_PRINT_SQL_TRUNCATE = None
 
 RUNSERVER_PLUS_PRINT_SQL_TRUNCATE = None
+
+LOGIN_REDIRECT_URL = "blog:article_list"  
+
+LOGIN_URL = "auth:login"
+
+LOGOUT_REDIRECT_URL = "auth:login"
+
+EMAIL_BACKEND = "django.core.mail.backends.filebased.EmailBackend"  
+
+EMAIL_FILE_PATH = BASE_DIR / "sent_emails"
+
+# Django REST Framework 設定
+REST_FRAMEWORK = {
+    "DEFAULT_SCHEMA_CLASS": "drf_spectacular.openapi.AutoSchema",
+}
+
+# drf-spectacular 設定
+SPECTACULAR_SETTINGS = {
+    "TITLE": "Django Playground API",
+    "DESCRIPTION": "Django Playground 專案的 API 文檔",
+    "VERSION": "1.0.0",
+    "SERVE_INCLUDE_SCHEMA": False,
+    "COMPONENT_SPLIT_REQUEST": True,
+}

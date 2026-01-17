@@ -1,0 +1,17 @@
+{
+  "version": "1",
+  "name": "Django Playground API",
+  "type": "collection",
+  "ignore": [
+    "node_modules",
+    ".git"
+  ],
+  "vars": [
+    {
+      "name": "baseUrl",
+      "value": "http://127.0.0.1:8000",
+      "type": "text",
+      "enabled": true
+    }
+  ]
+}

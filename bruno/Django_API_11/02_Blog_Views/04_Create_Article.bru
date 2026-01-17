@@ -1,0 +1,32 @@
+meta {
+  name: Create Article
+  type: http
+  seq: 4
+}
+
+post {
+  url: {{baseUrl}}/blog/articles/create/
+  body: form-urlencoded
+  auth: none
+}
+
+body:form-urlencoded {
+  title: 新文章標題
+  content: 文章內容
+  author: 1
+  tags: 1
+  tags: 2
+  is_published: true
+}
+
+headers {
+  Content-Type: application/x-www-form-urlencoded
+  Accept: text/html
+}
+
+docs {
+  # 建立新文章
+  
+  注意：此端點需要 CSRF token，可能需要先登入
+}
+

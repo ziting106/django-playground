@@ -1,0 +1,28 @@
+meta {
+  name: Color Filter
+  type: http
+  seq: 9
+}
+
+get {
+  url: {{baseUrl}}/practices/color-filter/
+  body: none
+  auth: none
+}
+
+params:query {
+  color: red
+  color: blue
+}
+
+headers {
+  Accept: text/html
+}
+
+docs {
+  # 顏色篩選
+  
+  查詢參數：
+  - color: 顏色 (可多選，重複參數)
+}
+

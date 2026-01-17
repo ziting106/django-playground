@@ -1,0 +1,25 @@
+meta {
+  name: Get Article Detail
+  type: http
+  seq: 5
+}
+
+get {
+  url: {{baseUrl}}/blog/articles/1/
+  body: none
+  auth: none
+}
+
+params:query {
+}
+
+headers {
+  Accept: text/html
+}
+
+docs {
+  # 取得文章詳情
+  
+  將 URL 中的 `1` 替換為實際的文章 ID
+}
+

@@ -1,0 +1,19 @@
+meta {
+  name: Get Authors
+  type: http
+  seq: 2
+}
+
+get {
+  url: {{baseUrl}}/blog/authors/
+  body: none
+  auth: none
+}
+
+params:query {
+}
+
+headers {
+  Accept: text/html
+}
+

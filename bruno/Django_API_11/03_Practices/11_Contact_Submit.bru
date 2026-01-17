@@ -1,0 +1,29 @@
+meta {
+  name: Contact Submit (POST)
+  type: http
+  seq: 11
+}
+
+post {
+  url: {{baseUrl}}/practices/contact/
+  body: form-urlencoded
+  auth: none
+}
+
+body:form-urlencoded {
+  name: 張三
+  email: zhangsan@example.com
+  message: 這是測試訊息
+}
+
+headers {
+  Content-Type: application/x-www-form-urlencoded
+  Accept: text/html
+}
+
+docs {
+  # 提交聯絡表單
+  
+  注意：此端點需要 CSRF token，可能需要先登入
+}
+
